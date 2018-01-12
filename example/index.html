@@ -1,26 +1,25 @@
 <!doctype html>
 <meta charset="utf-8">
 <style media="screen">
+  body {
+    background-image: url('http://www.acciona-energia.com/media/25688206/el-romero_galeria13.jpg');
+    background-size: cover;
+  }
 
-body {
-  background-image: url('http://www.acciona-energia.com/media/25688206/el-romero_galeria13.jpg');
-  background-size: cover;
-}
+  #text {
+    width: 25%;
+    float: left;
+    margin-top: 7%;
+    margin-left: 3%;
+  }
 
-#text {
-  width: 25%;
-  float: left;
-  margin-top: 7%;
-  margin-left: 3%;
-}
-
-#viz {
-  width: 65%;
-  float: right;
-  margin: 0 auto;
-  margin: 0;
-  padding: 0;
-}
+  #viz {
+    width: 65%;
+    float: right;
+    margin: 0 auto;
+    margin: 0;
+    padding: 0;
+  }
 </style>
 
 <script src="http://d3plus.org/js/d3.js"></script>
@@ -33,21 +32,18 @@ body {
 <div id="viz"></div>
 
 <script>
+  d3.json("generacion-solar.json", function(error, ourdata) {
+    if (error) return console.error(error);
+    make_viz(ourdata);
+  });
 
-
-d3.json("generacion-solar.json", function(error, ourdata) {
-  if (error) return console.error(error);
-  make_viz(ourdata);
-});
-
-function make_viz(data){
-  var visualization = d3plus.viz()
-      .container("#viz")
-      .data(data)
-      .type("tree_map")
-      .id("Codigo Central")
-      .size("Generacion_MWh")
-      .draw()
-}
-
+  function make_viz(data){
+    var visualization = d3plus.viz()
+        .container("#viz")
+        .data(data)
+        .type("tree_map")
+        .id("Codigo Central")
+        .size("Generacion_MWh")
+        .draw()
+  }
 </script>
